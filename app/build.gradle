@@ -48,12 +48,12 @@ dependencies {
   implementation 'com.google.code.gson:gson:2.8.9'
 
   // Ktor Client
-  implementation "io.insert-koin:koin-ktor:3.1.5"
-  implementation "io.ktor:ktor-client-core:2.1.3"
-  implementation "io.ktor:ktor-client-android:2.1.3"
-  implementation("io.ktor:ktor-serialization-gson:2.1.3")
-  implementation "io.ktor:ktor-client-logging:2.1.3"
-  implementation("io.ktor:ktor-client-content-negotiation:2.1.3")
+  implementation "io.insert-koin:koin-ktor:3.4.0"
+  implementation "io.ktor:ktor-client-core:2.3.0"
+  implementation "io.ktor:ktor-client-android:2.3.0"
+  implementation("io.ktor:ktor-serialization-gson:2.3.0")
+  implementation "io.ktor:ktor-client-logging:2.3.0"
+  implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
 
   // Lifecycle
   implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
