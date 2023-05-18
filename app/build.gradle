@@ -18,7 +18,7 @@ android {
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-    buildConfigField "String", "CLIENT_ID", localProperties['token']
+    //buildConfigField "String", "CLIENT_ID", localProperties['token']
   }
 
   buildTypes {

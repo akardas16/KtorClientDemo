@@ -17,7 +17,7 @@ class ImageServiceImpl(
     override suspend fun getImages(): ImageResponse {
         return client.get {
             headers {
-                append(HttpHeaders.Authorization, "Client-ID ${BuildConfig.CLIENT_ID}")
+                append(HttpHeaders.Authorization, "Client-ID jb-EjW223VFOntX6e8dY_KDNWy5SUvG8xILr0uZsZPk")
             }
             url(HttpRoutes.FETCH_IMAGES_URL)
         }.body()
