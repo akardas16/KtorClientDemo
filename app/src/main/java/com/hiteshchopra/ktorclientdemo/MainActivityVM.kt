@@ -1,17 +1,13 @@
 package com.hiteshchopra.ktorclientdemo
 
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hiteshchopra.ktorclientdemo.data.Status
+import com.hiteshchopra.ktorclientdemo.data.ktornetworking.Status
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserRequest
-import com.hiteshchopra.ktorclientdemo.data.service.MainRepository
+import com.hiteshchopra.ktorclientdemo.data.ktornetworking.MainRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 class MainActivityVM(private val repository: MainRepository) : ViewModel() {

@@ -1,17 +1,13 @@
 package com.hiteshchopra.ktorclientdemo
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.progressindicator.CircularProgressIndicator
-import com.hiteshchopra.ktorclientdemo.data.Status
+import com.hiteshchopra.ktorclientdemo.data.ktornetworking.Status
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserRequest
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserResponse
 import com.hiteshchopra.ktorclientdemo.data.model.UserListResponse

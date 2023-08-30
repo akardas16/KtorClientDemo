@@ -1,7 +1,7 @@
 package com.hiteshchopra.ktorclientdemo
 
-import com.hiteshchopra.ktorclientdemo.data.service.MainRepository
-import com.hiteshchopra.ktorclientdemo.data.service.MainRepositoryImpl
+import com.hiteshchopra.ktorclientdemo.data.ktornetworking.MainRepository
+import com.hiteshchopra.ktorclientdemo.data.ktornetworking.MainRepositoryImpl
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

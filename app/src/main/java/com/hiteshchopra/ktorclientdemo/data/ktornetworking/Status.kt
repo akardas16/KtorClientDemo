@@ -1,4 +1,4 @@
-package com.hiteshchopra.ktorclientdemo.data
+package com.hiteshchopra.ktorclientdemo.data.ktornetworking
 
 import java.lang.Exception
 

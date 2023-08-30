@@ -1,4 +1,4 @@
-package com.hiteshchopra.ktorclientdemo.data.service
+package com.hiteshchopra.ktorclientdemo.data.ktornetworking
 
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserRequest
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserResponse

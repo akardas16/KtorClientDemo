@@ -1,6 +1,5 @@
-package com.hiteshchopra.ktorclientdemo.data.service
+package com.hiteshchopra.ktorclientdemo.data.ktornetworking
 
-import com.hiteshchopra.ktorclientdemo.data.Endpoints
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserRequest
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserResponse
 import com.hiteshchopra.ktorclientdemo.data.model.ImageResponse
@@ -10,6 +9,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.post
+import io.ktor.client.request.request
 import io.ktor.client.request.url
 
 class MainRepositoryImpl(private val client: HttpClient) : MainRepository {
