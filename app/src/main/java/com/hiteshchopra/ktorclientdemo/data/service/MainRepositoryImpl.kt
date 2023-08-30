@@ -1,6 +1,5 @@
 package com.hiteshchopra.ktorclientdemo.data.service
 
-import android.content.Context
 import com.hiteshchopra.ktorclientdemo.data.Endpoints
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserRequest
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserResponse
@@ -12,9 +11,8 @@ import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.post
 import io.ktor.client.request.url
-import io.ktor.http.HttpHeaders
 
-class ApiServiceImpl(private val client: HttpClient) : ApiService {
+class MainRepositoryImpl(private val client: HttpClient) : MainRepository {
     override suspend fun getImages(): ImageResponse {
         return client.get {
             headers {

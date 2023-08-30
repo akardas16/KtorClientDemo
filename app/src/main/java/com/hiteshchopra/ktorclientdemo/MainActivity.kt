@@ -9,20 +9,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.progressindicator.CircularProgressIndicator
-import com.hiteshchopra.ktorclientdemo.Status.Error
-import com.hiteshchopra.ktorclientdemo.Status.Loading
-import com.hiteshchopra.ktorclientdemo.Status.Success
+import com.hiteshchopra.ktorclientdemo.data.Status
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserRequest
 import com.hiteshchopra.ktorclientdemo.data.model.CreateUserResponse
-import com.hiteshchopra.ktorclientdemo.data.model.ImageResponse
 import com.hiteshchopra.ktorclientdemo.data.model.UserListResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-  private val viewModel: MainActivityVM by viewModels()
+  private val viewModel by viewModel<MainActivityVM>()
+
+
   lateinit var circularProgressIndicator: CircularProgressIndicator
   lateinit var textView: TextView
 
@@ -41,54 +42,63 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
   private fun addObservers() {
+    lifecycleScope.launch {
+      //viewModel.fetchImagesStatus.collect{status -> }
+    }
 
-    viewModel.fetchAllUsers.observe(this){status ->
-      when(status){
-        //Loading started
-        is Loading -> { circularProgressIndicator.show() }
-        //Loading finished
-        is Success<*> -> {
-          circularProgressIndicator.hide()
-          status.data.let {
-            textView.text = (it as UserListResponse).toString()
+    lifecycleScope.launch {
+      viewModel.fetchAllUsers.collect{status ->
+        when(status){
+          //Loading started
+          is Status.Loading -> { circularProgressIndicator.show() }
+          //Loading finished
+          is Status.Success<*> -> {
+            circularProgressIndicator.hide()
+            status.data.let {
+              textView.text = (it as UserListResponse).toString()
+            }
+
+          }
+          //Loading finished
+          is Status.Error -> {
+            circularProgressIndicator.hide()
+            withContext(Dispatchers.Main){
+              Toast.makeText(this@MainActivity,"Error happened! ${status.exception.message}",Toast.LENGTH_LONG).show()
+            }
+
           }
 
         }
-        //Loading finished
-        is Error -> {
-          circularProgressIndicator.hide()
-          Log.i("sdfsdfsdfs", "addObservers: ${status.exception.message}")
-          Toast.makeText(this,"Error happened! ${status.exception.message}",Toast.LENGTH_LONG).show()
-        }
-      }
 
+      }
     }
 
-    //Create USER
 
+   lifecycleScope.launch {
+     viewModel.createUser.collect{ status ->
+       when(status){
+         //Loading started
+         is Status.Loading -> { circularProgressIndicator.show() }
+         //Loading finished
+         is Status.Success<*> -> {
+           circularProgressIndicator.hide()
+           status.data.let {
+             textView.text = (it as CreateUserResponse).toString()
+           }
 
-    viewModel.createUser.observe(this){ status ->
-      when(status){
-        //Loading started
-        is Loading -> { circularProgressIndicator.show() }
-        //Loading finished
-        is Success<*> -> {
-          circularProgressIndicator.hide()
-          status.data.let {
-            textView.text = (it as CreateUserResponse).toString()
-          }
+         }
+         //Loading finished
+         is Status.Error -> {
+           circularProgressIndicator.hide()
+           Toast.makeText(this@MainActivity,"Error happened! ${status.exception.message}",Toast.LENGTH_LONG).show()
+         }
+       }
 
-        }
-        //Loading finished
-        is Error -> {
-          circularProgressIndicator.hide()
-          Log.i("sdfsdfsdfs", "addObservers: ${status.exception.message}")
-          Toast.makeText(this,"Error happened! ${status.exception.message}",Toast.LENGTH_LONG).show()
-        }
-      }
+     }
+   }
 
-    }
   }
 
 
